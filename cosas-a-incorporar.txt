@@ -1,0 +1,96 @@
+Ya sabemos que alke-wallet tiene las siguientes funcionalidades
+
+Verificaicon de inputs de login
+
+Continuidad en los datos del saldo graicas al local storage.
+
+Asi tambien los datos de nuevos contacots para transferir, y las transacciones anteriores
+
+verificaiones para el saldo, enc aso de hacer transacciones con monto mayor al saldo.
+
+
+Lo que no tenemos es un sistema o base de datos para los usuarios, donde cada usuario tiene su propio saldo,
+sus propios contactos, sus propias transacciones. 
+
+Ademas de esto me gustaria agregar un tipo dashbbora interactivo para ver el historia de transacciones de manera dinamica. A su vez
+obviametne incorporar todos los mdoelso para que esto sea aplicable a django.
+
+Otra cosa que me gustaria agregar seria tambien un modelo de bolsillo o cuenta de ahorro personalizable que esto seria otra cosa. Podria agregar
+algun convertidor de divisa para ver los cambios a otras monedas.
+
+
+
+
+- Creacion del venv y del proyecto. Listo
+- Creacion de la App alke wallet como tambien su vinculacion con settings.py ("INSTALLED_APPS"). Listo
+- Creacion de las carpetas para ls templates y statics de la app alkewallet. Listo
+- Actualizamos rutas y demas para que todo funcione bien. Listo
+- configurar la base de datos.
+- me gustaria eliminar la opcion de CBU en la lista de contactos, em parece incenecsaria. Listo
+    -Elimnimaos en el html de sendmoney. Listo
+    - Eliminamos del js, tanto de la alerta, como el render. Listo
+
+Una vez todo esto listo, es hora de cambiar alkewallet, para que sea una aplicacion web con base de datos.
+Entonces nuestros proximos pasos a seguir seria actualizar el login. Este es un salto complejo porque debemos 
+agregar un apartado para poder crear un un usuario nuevo en el index.html, ademas de que este debe recibir informaicon
+para que se maneje en el backend y podemos crear el usuario en la base de datos. Ademas ahroa solo mantendriamos las parters
+visuales del js, ya que no requerimos que se envien datos del localstorage o leer estos datos, sino que precisamos que se lean 
+los datos de la base de datos. Para esto, debemos actualizar nuestra app para que sea capaz de realizar consutlas ORM a la base 
+de datos para obetener datos de contactos y poder renderealos, ademas de datos de transacciones y tambien poder reenderearlos.
+Es tooda una tarea compleja ahora, pero veremos de que estamos hecho, jaja.
+
+Entonces la linea que deberiamos pensar es la siguiente.
+
+- añadimos un boton de crear cuenta en el index.html. (Listo, se agregó con método POST y página register.html)
+- Usamos en el views.py, la funcion de crear cuenta para que se pueda crear un usuario en la base de datos. (Listo, maneja POST para login y registro validado).
+- Actualizamos el login, dashboard, sendmoney, deposit, withdraw, transactions, contacts para que se pueda iniciar sesion con el usuario creado
+y ademas con @login_required para que no se pueda acceder a no ser que pase por el login primero. (Listo, decoradores agregados).
+
+- Elimnamos la dependeica del localStorage, cuando cargamos el menu tambien enviamos el saldo en el render. 
+Ademas en las otras paginas tambien enviamos estos datos cuiando se renderea para poder cargar todos los datos.
+
+- borramos en los JS todos los datos de lectrua y escritura del localstorage. 
+- En las aletras de convrfiamcion en vez de restar o sumar en el localstorage, enviamoreos una solicitud POST
+direcaamten a la ritua de nuestro backend para que pueda actualizar el saldo.
+
+Me di cuenta que creadno este apartado, no tenemos una manera de cerrar sesion, por lo que debemos agregar un boton de cerrar sesion
+en el menu.html, y ademas una ruta en el urls.py para que pueda cerrar sesion. En el views.py, debemos agregar la funcion de cerrar sesion.
+
+Bueno ahora ya lo tengo listo. jajaj
+
+Debemos incorporar ahora todos los metodos para que el menu princpal lea el saldo del ususario conectado
+ademas de que en la pagina depositar se pueda agregar dinero a la cuenta logeada y que todo quede en la base de datos
+debemos tener continuidad en todo.
+
+Ya tenemos esto, tuve que configurar el monto como Decimal en vez de float. Ahora debemos incorporar los metodos
+para que se pueda enviar dinero a otro usuario, y que se pueda ver el historial de transacciones.
+
+
+Cuando queremos volver al menu principal, me lanzaba un error, porque defimos el balance con un maximo de 10 digitos, 
+cuando agregabamos una suma mayor a esto y cargamos el menu principal, teniamos un error. Arreglado.
+
+Me di cuenta que la sintaxis de django no debe tener saltos de linea entre medio ya que no lee bien si pasa esto, cudiado con prettier.
+
+Ahora me gustaria una nueva vision para la parte de transacciones. Tenemos en la base de datos los siguetnes parametros:
+
+- usuario
+- titulo 
+- montoç
+- fecha
+
+Pero tenemos probelmas para las transferencias, porque no sabemos si el usuario que envia el dinero es el mismo que el que recibe el dinero.
+para esto modificamos la base de datos para agergar receptro y emisor, en caso de que el receptor sea el mimso que el emisor se detecta como 
+deposito en billetera.
+
+Obviamente vamos a tener problmeas de consistencia ya que el nuevo esquema es difertnete para los datos existentes de transacciones.
+Para actualizar la base de datos debemos eliminar las migraciones anteriores. Pero como son datos de pruebas, no hay problema en hacerlo.
+
+Ahora debemos modificar el frontend para que todo esto funcione. Me gustaira tambien agregar una funcion que permita visualizar como la "Boleta de transaccion".
+Tenemos listo esta incorporacioon, pero vamos a avanzar con la crecion de sendmoney, pero de manera coherente, ahora sera relativo a usuarios dentro de la app.
+
+Pensando en la actualizacion de contactos y enviar dinero, agregamos a la base de datos la variable correo que seria un foreign key de User. A su vez
+unas funciones en view.py que gestione el add_contact, delete_contact.
+
+
+
+Deje de ocupar esto para registrar mi avance, pq sentia que me atrasaba.

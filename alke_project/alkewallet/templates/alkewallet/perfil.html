@@ -1,0 +1,53 @@
+{% extends 'alkewallet/base.html' %}
+{% load static humanize%}
+
+{% block title %}Wallet - Mi Perfil{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'alkewallet/css/perfil.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 120px);">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card profile-card mx-auto">
+        <div class="card-body text-center">
+          
+          <div class="avatar-circle mb-4">
+            <!-- Primera letra del username o el first_name si existe -->
+            {{ request.user.first_name|default:request.user.username|make_list|first|upper }}
+          </div>
+          
+          <h3 class="mb-1 font-weight-bold">{{ request.user.first_name }} {{ request.user.last_name }}</h3>
+          <p class="text-white-50 mb-4">@{{ request.user.username }}</p>
+
+          <hr class="bg-light opacity-25 mb-4">
+
+          <div class="text-left">
+            <div class="info-field">
+              <div class="info-label">Correo Electrónico</div>
+              <div class="info-value">{{ request.user.email|default:"No registrado" }}</div>
+            </div>
+
+            <div class="info-field">
+              <div class="info-label">Miembro Desde</div>
+              <div class="info-value">{{ request.user.date_joined|date:"d F Y" }}</div>
+            </div>
+
+            <div class="info-field" style="border-left-color: #7b2cbf;">
+              <div class="info-label">Saldo Principal Actual</div>
+              <div class="info-value" style="color: #00d2ff;">${{ cuenta.saldo|floatformat:0|intcomma }}</div>
+            </div>
+          </div>
+
+          <a href="{% url 'menu' %}" class="btn btn-outline-light btn-block mt-4" style="border-radius: 12px; font-weight: bold;">
+            Volver al Menú
+          </a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

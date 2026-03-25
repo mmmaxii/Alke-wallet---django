@@ -1,0 +1,174 @@
+{% extends 'alkewallet/base.html' %}
+{% load static custom_filters %}
+
+{% block title %}Wallet - Mis Bolsillos{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'alkewallet/css/sendmoney.css' %}?v=4.0" />
+<link rel="stylesheet" href="{% static 'alkewallet/css/bolsillos.css' %}?v=4.0" />
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div
+    class="row justify-content-center align-items-center"
+    style="min-height: calc(100vh - 80px)"
+  >
+    <div class="col-12 col-md-8 col-lg-6">
+      <div
+        class="card wallet-card shadow-lg mx-auto"
+        style="
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(15px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 20px;
+          color: white;
+        "
+      >
+        <div class="card-body p-4">
+          <h4 class="text-center mb-2">Mis Bolsillos</h4>
+          <p class="text-center mb-3" style="color: #e0e0e0; font-size: 1.1em">
+            Saldo global disponible: <b class="text-white">${{ saldo|clp }}</b>
+          </p>
+
+          <!-- Tarjeta de Ayuda Desplegable -->
+          <div class="mb-4">
+            <button
+              class="btn btn-sm btn-outline-info btn-block"
+              type="button"
+              data-toggle="collapse"
+              data-target="#infoBolsillosCollapse"
+              aria-expanded="false"
+              aria-controls="infoBolsillosCollapse"
+              style="
+                border-radius: 12px;
+                border-color: rgba(0, 210, 255, 0.5);
+                color: #00d2ff;
+              "
+            >
+              ¿Cómo funcionan los Bolsillos?
+            </button>
+            <div class="collapse mt-2" id="infoBolsillosCollapse">
+              <div
+                class="card card-body text-left"
+                style="
+                  background: rgba(0, 0, 0, 0.2);
+                  border: 1px solid rgba(0, 210, 255, 0.2);
+                  border-left: 3px solid #00d2ff;
+                  border-radius: 12px;
+                  color: rgba(255, 255, 255, 0.85);
+                  font-size: 0.9em;
+                  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                "
+              >
+                <p class="mb-2">
+                  <strong>Mis Bolsillos</strong> es una herramienta para apartar
+                  dinero de tu saldo principal y lograr tus metas de ahorro.
+                </p>
+                <ul class="pl-3 mb-0" style="line-height: 1.6">
+                  <li>
+                    <strong>Crear Meta:</strong> Define un nombre y el monto
+                    total que deseas juntar.
+                  </li>
+                  <li>
+                    <strong>Aportar:</strong> Transfiere dinero de tu billetera
+                    al bolsillo de forma segura.
+                  </li>
+                  <li>
+                    <strong>Retirar o Eliminar:</strong> Puedes sacar tus
+                    ahorros en cualquier momento y regresarán automáticamente a
+                    tu billetera principal.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-outline-light btn-block mb-4"
+            id="btnCrearBolsillo"
+            style="
+              border-radius: 12px;
+              font-weight: bold;
+              border-color: rgba(255, 255, 255, 0.5);
+            "
+          >
+            + Crear Nueva Meta de Ahorro
+          </button>
+
+          <h6
+            class="mb-3 text-uppercase"
+            style="
+              letter-spacing: 1px;
+              font-size: 0.8em;
+              color: rgba(255, 255, 255, 0.6);
+            "
+          >
+            Tus Bolsillos Activos
+          </h6>
+
+          <div id="listaBolsillos">
+            <!-- Se inyectarán por JS -->
+          </div>
+
+          <hr
+            class="bg-light opacity-50 my-4"
+            style="border-top: 1px solid rgba(255, 255, 255, 0.2)"
+          />
+
+          <div
+            class="d-flex justify-content-between mb-3"
+            id="accionesBolsillo"
+            style="display: none !important"
+          >
+            <button
+              class="btn btn-success btn-sm flex-grow-1 mr-1 shadow-sm"
+              id="btnIngresarDinero"
+              style="border-radius: 10px; font-weight: bold"
+            >
+              Aportar
+            </button>
+            <button
+              class="btn btn-warning btn-sm flex-grow-1 mx-1 text-dark shadow-sm"
+              id="btnRetirarDinero"
+              style="border-radius: 10px; font-weight: bold"
+            >
+              Retirar
+            </button>
+            <button
+              class="btn btn-danger btn-sm flex-grow-1 ml-1 shadow-sm"
+              id="btnEliminarBolsillo"
+              style="border-radius: 10px; font-weight: bold"
+            >
+              Eliminar
+            </button>
+          </div>
+
+          <a
+            href="{% url 'menu' %}"
+            class="btn btn-secondary btn-block mt-3"
+            style="
+              border-radius: 12px;
+              background: rgba(255, 255, 255, 0.1);
+              color: white;
+              border: none;
+            "
+          >
+            Volver al Menú Principal
+          </a>
+
+          <script>
+            const csrfToken = '{{ csrf_token }}';
+            const SALDO_ACTUAL_DB = parseFloat("{{ saldo|stringformat:'.2f' }}");
+            const BOLSILLOS_DB = {{ bolsillos_json|safe }};
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} 
+
+{% block extrascripts %}
+<script src="{% static 'alkewallet/js/bolsillos.js' %}"></script>
+{% endblock %}

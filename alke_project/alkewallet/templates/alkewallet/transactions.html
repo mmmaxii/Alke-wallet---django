@@ -1,0 +1,129 @@
+{% extends 'alkewallet/base.html' %}
+{% load static custom_filters %}
+
+{% block title %}Wallet - Últimos Movimientos{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'alkewallet/css/transactions.css' %}?v=4.0" />
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 80px);">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card wallet-card shadow-sm mx-auto">
+        <div class="card-body">
+          <h4 class="text-center mb-4">Últimos Movimientos</h4>
+
+          <ul class="list-group mb-3" id="listaMovimientos">
+            {% for mov in page_obj %}
+            <li
+              class="list-group-item movement-item animate__animated animate__fadeIn"
+            >
+              <div class="d-flex justify-content-between align-items-center w-100">
+                <div>
+                  {% if mov.titulo and 'bolsillo' in mov.titulo|lower %}
+                    <div class="movement-title">{{ mov.titulo }}</div>
+                  {% elif mov.emisor == mov.receptor %}
+                    <div class="movement-title">Depósito en Billetera</div>
+                  {% elif mov.emisor == request.user %}
+                    <div class="movement-title">Transferencia enviada a {{ mov.receptor.first_name|default:mov.receptor.username }}</div>
+                  {% else %}
+                    <div class="movement-title">Transferencia recibida de {{ mov.emisor.first_name|default:mov.emisor.username }}</div>
+                  {% endif %}
+                  <small class="text-muted" style="color: #ccc !important"
+                    >{{ mov.fecha|date:"d M Y" }}</small
+                  >
+                </div>
+
+                <div class="d-flex align-items-center">
+                  {% if mov.titulo and 'Aporte' in mov.titulo %}
+                  <div class="movement-amount amount-negative" style="margin-right: 15px;">
+                    ${{ mov.monto|clp }}
+                  </div>
+                  {% elif mov.titulo and 'Retiro' in mov.titulo %}
+                  <div class="movement-amount amount-positive" style="margin-right: 15px;">
+                    ${{ mov.monto|clp }}
+                  </div>
+                  {% elif mov.titulo and 'Cierre' in mov.titulo %}
+                  <div class="movement-amount amount-positive" style="margin-right: 15px;">
+                    ${{ mov.monto|clp }}
+                  </div>
+                  {% elif mov.emisor == mov.receptor or mov.receptor == request.user %}
+                  <div class="movement-amount amount-positive" style="margin-right: 15px;">
+                    ${{ mov.monto|clp }}
+                  </div>
+                  {% else %}
+                  <div class="movement-amount amount-negative" style="margin-right: 15px;">
+                    ${{ mov.monto|clp }}
+                  </div>
+                  {% endif %}
+                  <button class="btn btn-sm btn-outline-light" onclick="showTransactionDetails('{{ mov.titulo|default:'Transferencia'|escapejs }}', '{{ mov.monto|floatformat:0 }}', '{{ mov.fecha|date:'d M Y H:i' }}', '{% if mov.titulo and 'bolsillo' in mov.titulo|lower %}{{ mov.titulo|escapejs }}{% elif mov.emisor == mov.receptor %}Depósito{% elif mov.emisor == request.user %}Envío a {{ mov.receptor.first_name|default:mov.receptor.username|escapejs }}{% else %}Recibido de {{ mov.emisor.first_name|default:mov.emisor.username|escapejs }}{% endif %}')" title="Ver Detalles">
+                    Recibo
+                  </button>
+                </div>
+              </div>
+            </li>
+
+            {% empty %}
+            <li
+              class="list-group-item text-center text-muted"
+              style="border: none"
+            >
+              Aún no tienes movimientos registrados en tu billetera. ¡Haz tu
+              primer depósito!
+            </li>
+            {% endfor %}
+          </ul>
+
+          <!-- Sistema de Paginación nativo de Django en mi frontend -->
+          <div
+            id="paginacion-container"
+            class="d-flex justify-content-between align-items-center mb-3"
+          >
+            {% if page_obj.has_previous %}
+            <a
+              href="?page={{ page_obj.previous_page_number }}"
+              class="btn btn-sm btn-glass text-white text-decoration-none"
+            >
+              <i class="fas fa-chevron-left"></i> Anterior
+            </a>
+            {% else %}
+            <button class="btn btn-sm btn-glass text-white" disabled>
+              <i class="fas fa-chevron-left"></i> Anterior
+            </button>
+            {% endif %}
+
+            <span id="infoPagina" class="text-white font-weight-bold">
+              Pág {{ page_obj.number }} de {{ page_obj.paginator.num_pages}}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a
+              href="?page={{ page_obj.next_page_number }}"
+              class="btn btn-sm btn-glass text-white text-decoration-none"
+            >
+              Siguiente <i class="fas fa-chevron-right"></i>
+            </a>
+            {% else %}
+            <button class="btn btn-sm btn-glass text-white" disabled>
+              Siguiente <i class="fas fa-chevron-right"></i>
+            </button>
+            {% endif %}
+          </div>
+
+          <a href="{% url 'menu' %}" class="btn btn-outline-secondary btn-block" id="btnVolver">
+            Volver al Menú Principal
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extrascripts %}
+<script src="{% static 'alkewallet/js/transactions.js' %}?v=2.0"></script>
+{% endblock %} </body>
+</html>

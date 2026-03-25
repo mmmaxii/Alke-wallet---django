@@ -1,0 +1,181 @@
+body {
+  background: url('../img/fondo_alkewallet.png') no-repeat center center fixed;
+  background-size: cover;
+  box-shadow: inset 0 0 0 2000px rgba(30, 10, 60, 0.5);
+  backdrop-filter: blur(5px);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card.wallet-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  width: 100%;
+  margin: 0;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+h4,
+h6 {
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+hr {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  /* Línea separadora sutil */
+}
+
+/* INPUTS (BUSCADOR) */
+.form-control {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  color: white !important;
+  padding: 12px 15px;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  outline: none;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  margin-bottom: 5px;
+  /* Separación entre contactos */
+  border-radius: 10px !important;
+  /* Bordes redondeados en cada item */
+  transition: all 0.2s ease;
+}
+
+.contact-item {
+  cursor: pointer;
+}
+
+/* Hover suave */
+.contact-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+  /* Pequeño movimiento a la derecha */
+}
+
+/* Contacto Seleccionado (Activo) */
+.active-contact {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  /* Más brillante */
+  border-left: 5px solid #d080ff !important;
+  /* Borde izquierdo morado neón */
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.contact-details {
+  font-size: 0.85rem;
+  color: #cccccc;
+  /* Gris claro para los detalles */
+}
+
+
+/* Botón Principal (Enviar Dinero) - Blanco */
+#btnEnviarDinero {
+  background-color: #ffffff;
+  color: #582551;
+  border: none;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+#btnEnviarDinero:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Botón Agregar Nuevo (+ Agregar...)*/
+.btn-outline-primary {
+  color: #ffffff;
+  border-color: #ffffff;
+  border-radius: 12px;
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+  color: white;
+}
+
+/* Botón Eliminar - Rojo suave */
+#btnEliminarContacto {
+  border-radius: 12px;
+  margin-top: 10px;
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+#btnEliminarContacto:hover {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+#btnVolver {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+#btnVolver:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .vh-100 {
+    height: auto !important;
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .card.wallet-card {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+    width: auto;
+    padding: 0.5rem;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}

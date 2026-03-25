@@ -1,0 +1,141 @@
+/* Estilos generales */
+
+body {
+    /* Imagen de fondo (la misma del login) */
+    background: url('../img/fondo_alkewallet.png') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+
+    /* Esto añade un "filtro" oscuro encima de la imagen para que el texto resalte más */
+    box-shadow: inset 0 0 0 2000px rgba(30, 10, 60, 0.4);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wallet-card {
+    /* Efecto Vidrio */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    /* Aseguramos que el texto dentro sea legible */
+    color: white;
+    width: 100%;
+}
+
+
+
+/* Estilos para el balance */
+.balance {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    /* Blanco brillante */
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    /* Un pequeño brillo */
+    margin-bottom: 30px;
+}
+
+#depositButton,
+#sendMoneyButton,
+#transactionsButton {
+    background: white;
+    /* Botones blancos para alto contraste */
+    color: #582551;
+    /* Texto morado oscuro */
+    border: none;
+    border-radius: 15px;
+    /* Bordes redondeados y mas modernos */
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    /* Espacio entre botones */
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto Hover (al pasar el mouse) */
+#depositButton:hover,
+#sendMoneyButton:hover,
+#transactionsButton:hover {
+    transform: translateY(-3px);
+    /* Se levanta un poco */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: #f8f9fa;
+}
+
+
+
+/* =========================================
+   FILTROS DEL GRÁFICO (CHART.JS)
+   ========================================= */
+#chartFilters .btn-outline-light {
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+#chartFilters .btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+}
+#chartFilters .btn-outline-light.active,
+#chartFilters .btn-outline-light:focus {
+    background: rgba(0, 210, 255, 0.15) !important;
+    border-color: #00d2ff !important;
+    color: #00d2ff !important;
+    box-shadow: 0 0 5px rgba(0, 210, 255, 0.4) !important;
+}
+
+
+
+/* =========================================
+   RESPONSIVE (VISTA MÓVIL)
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    /* Quitamos la altura forzada para que no se corte si el celu es muy chico */
+    .vh-100 {
+        height: auto !important;
+        min-height: 100vh;
+        /* Mínimo el alto de la pantalla, pero puede crecer */
+        padding-top: 60px;
+        /* Espacio arriba para que no pegue al techo */
+        padding-bottom: 60px;
+    }
+
+    /* Ajustar la tarjeta */
+    .card.wallet-card {
+        /* Forzamos márgenes automáticos para centrar y un pequeño margen lateral */
+        margin-left: 15px;
+        margin-right: 15px;
+        width: auto;
+        /* Que ocupe lo que pueda menos los márgenes */
+
+        /* Reducimos un poco el padding interno para ganar espacio */
+        padding: 1.5rem;
+    }
+
+    /* 3. Ajustar tamaño de letras para que no se rompa */
+    .balance {
+        font-size: 2.5rem;
+        /* Un poco más chico que en escritorio (era 3rem) */
+    }
+
+    .wallet-card h4 {
+        font-size: 1.3rem;
+    }
+
+    /* 4. Asegurar que el body no tenga scroll horizontal */
+    body {
+        overflow-x: hidden;
+    }
+}

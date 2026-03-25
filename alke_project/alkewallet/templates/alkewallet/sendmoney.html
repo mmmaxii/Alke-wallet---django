@@ -1,0 +1,64 @@
+{% extends 'alkewallet/base.html' %}
+{% load static %}
+
+{% block title %}Wallet - Enviar Dinero{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'alkewallet/css/sendmoney.css' %}?v=4.0">
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 80px);">
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <div class="card wallet-card shadow-sm mx-auto">
+        <div class="card-body">
+
+          <h4 class="text-center mb-4">Enviar Dinero</h4>
+
+          <div class="form-group">
+            <label for="searchContact">Buscar contacto</label>
+            <input type="text" class="form-control" id="searchContact" placeholder="Nombre o alias">
+          </div>
+
+          <button class="btn btn-outline-primary btn-block mb-3">
+            + Agregar nuevo contacto
+          </button>
+
+          <hr>
+
+
+          <h6 class="mb-2">Contactos</h6>
+
+          <ul class="list-group mb-3" id="listaContactos">
+          </ul>
+
+          <button class="btn btn-primary btn-block" id="btnEnviarDinero">
+            Enviar Dinero
+          </button>
+
+          <button type="button" class="btn btn-outline-danger btn-block" id="btnEliminarContacto">Eliminar
+            Contacto</button>
+
+
+          <a href="{% url 'menu' %}" class="btn btn-outline-secondary btn-block" id="btnVolver">
+            Volver al Menú Principal
+          </a>
+
+          <script>
+            const csrfToken = '{{ csrf_token }}';
+            const SALDO_ACTUAL_DB = {{ saldo|stringformat:".2f" }};
+            const CONTACTOS_DB = {{ contactos_json|safe }};
+          </script>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extrascripts %}
+<script src="{% static 'alkewallet/js/sendmoney.js' %}"></script>
+{% endblock %}

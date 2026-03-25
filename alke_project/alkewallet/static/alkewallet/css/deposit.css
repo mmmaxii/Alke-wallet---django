@@ -1,0 +1,146 @@
+/* CONFIGURACIÓN DEL FONDO (Consistencia con Menu y Login) */
+body {
+  background: url('../img/fondo_alkewallet.png') no-repeat center center fixed;
+  background-size: cover;
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 0 0 2000px rgba(30, 10, 60, 0.5);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.card.wallet-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  /* Solución de centrado para escritorio */
+  width: 100%;
+  margin: 0;
+}
+
+.card-body {
+  padding: 2.5rem;
+}
+
+h4 {
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px !important;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+  display: block;
+  /* Asegura que ocupe su línea */
+}
+
+.form-control {
+  background: rgba(255, 255, 255, 0.05);
+  /* Fondo casi transparente */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  color: white !important;
+  /* Texto blanco al escribir */
+  padding: 12px 15px;
+  font-size: 1.1rem;
+}
+
+/* Color del texto de ayuda (placeholder) */
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Cuando se hace click en el input */
+.form-control:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  outline: none;
+}
+
+
+/* Botón Principal (Realizar Deposito) */
+#btnDepositar {
+  background-color: #ffffff;
+  color: #582551;
+  /* Texto morado */
+  border: none;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#btnDepositar:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Botón Volver */
+#btnVolver {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+#btnVolver:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  text-decoration: none;
+}
+
+/* SMART PILLS (Botones Rápidos de Monto) */
+.btn-glass-quick {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 20px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    flex-grow: 1;
+    margin: 0 4px;
+}
+.btn-glass-quick:hover, .btn-glass-quick:active {
+    background: rgba(0, 210, 255, 0.15);
+    border-color: #00d2ff;
+    color: #00d2ff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 210, 255, 0.3);
+}
+.btn-glass-quick:first-child { margin-left: 0; }
+.btn-glass-quick:last-child { margin-right: 0; }
+
+@media (max-width: 768px) {
+  .vh-100 {
+    height: auto !important;
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .card.wallet-card {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+    width: auto;
+    padding: 1rem;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}

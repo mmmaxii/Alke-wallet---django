@@ -1,0 +1,164 @@
+/* =========================================
+   ALKEWALLET ADMIN - DARK FINTECH THEME
+   Overriding native Django 4.0+ / 6.0 variables
+   ========================================= */
+:root {
+    --primary: #5f1ea3;
+    --secondary: #00d2ff;
+    --accent: #3a7bd5;
+    --primary-fg: #ffffff;
+    
+    --body-bg: #12121c;
+    --body-fg: #e0e0e0;
+    --body-quiet-color: #a0a0a0;
+    --body-loud-color: #ffffff;
+    
+    --header-color: #ffffff;
+    --header-branding-color: #ffffff;
+    --header-bg: #1e1e32;
+    --header-link-color: #00d2ff;
+    
+    --breadcrumbs-fg: #e0e0e0;
+    --breadcrumbs-link-fg: #00d2ff;
+    --breadcrumbs-bg: rgba(30, 30, 50, 0.95);
+    
+    --link-fg: #00d2ff;
+    --link-hover-color: #3a7bd5;
+    --link-selected-fg: #ffffff;
+    
+    --hairline-color: rgba(255,255,255,0.05);
+    --border-color: rgba(255,255,255,0.1);
+    
+    --error-fg: #ff4d4d;
+    --message-success-bg: rgba(74, 222, 128, 0.2);
+    --message-warning-bg: rgba(255, 170, 0, 0.2);
+    --message-error-bg: rgba(255, 77, 77, 0.2);
+    
+    --darkened-bg: #181825;
+    --selected-bg: #302b63;
+    --selected-row: #24243e;
+    
+    --button-fg: #ffffff;
+    --button-bg: #7b2cbf;
+    --button-hover-bg: #5f1ea3;
+    --default-button-bg: #00d2ff;
+    --default-button-hover-bg: #00b8e6;
+    --close-button-bg: #ff4d4d;
+    --close-button-hover-bg: #cc0000;
+    --delete-button-bg: #ff4d4d;
+    --delete-button-hover-bg: #cc0000;
+    
+    --object-tools-fg: #ffffff;
+    --object-tools-bg: #22223b;
+    --object-tools-hover-bg: #302b63;
+}
+
+/* Glassmorphism & UI Enhancements */
+body {
+    background-color: var(--body-bg) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+#header {
+    background: linear-gradient(135deg, #1e1e32, #12121c);
+    border-bottom: 2px solid #00d2ff;
+    box-shadow: 0 4px 15px rgba(0,210,255,0.1);
+}
+
+div.breadcrumbs {
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 20px;
+}
+
+.module {
+    background: rgba(30, 30, 50, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.module h2, .module caption {
+    background: linear-gradient(90deg, #302b63, #22223b) !important;
+    color: white !important;
+    padding: 12px 15px !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+}
+
+#site-name a {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: #00d2ff !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    padding: 10px 20px;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover, a.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(123, 44, 191, 0.3);
+}
+
+select, input[type=text], input[type=password], input[type=email], input[type=url], input[type=number], textarea {
+    background-color: rgba(0,0,0,0.2) !important;
+    color: white !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+    transition: all 0.3s ease;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=number]:focus {
+    border-color: #00d2ff !important;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.2) !important;
+    outline: none !important;
+}
+
+.help, p.help {
+    color: rgba(255,255,255,0.5) !important;
+    font-size: 0.85rem;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* Tabla Principal / List view */
+#changelist table {
+    border: none !important;
+}
+
+#changelist-filter {
+    background: rgba(30,30,50,0.6);
+    border-left: 1px solid var(--border-color);
+}
+
+#changelist-filter h2 {
+    background: transparent !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Switch del Login */
+.login #container {
+    background: rgba(30, 30, 50, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}

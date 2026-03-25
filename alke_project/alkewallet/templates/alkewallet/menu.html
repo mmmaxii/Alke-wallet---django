@@ -1,0 +1,96 @@
+{% extends 'alkewallet/base.html' %}
+{% load static custom_filters %}
+
+{% block title %}Wallet - Menú Principal{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'alkewallet/css/menu.css' %}?v=6.0" />
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- min-vh-100 para evitar overflow debido al Navbar -->
+  <div class="row w-100 justify-content-center align-items-center" style="min-height: calc(100vh - 80px); max-width: 1200px; margin: 0 auto;">
+    
+    <!-- Columna Izquierda: Menú Principal -->
+    <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+      <div class="card wallet-card shadow-sm mx-auto">
+        <div class="card-body text-center">
+          <h4 class="mb-3">Mi Billetera</h4>
+          <p class="text-muted mb-1" style="color: rgba(255,255,255,0.8) !important;">Saldo disponible</p>
+          <div class="balance mb-4" id="texto-saldo">${{ saldo|clp }}</div>
+          <div class="d-grid gap-2">
+            <a class="btn btn-success btn-block mb-2" id="depositButton">
+              Depositar
+            </a>
+
+            <a class="btn btn-primary btn-block mb-2" id="sendMoneyButton">
+              Enviar Dinero
+            </a>
+
+            <a class="btn btn-outline-secondary btn-block" id="transactionsButton">
+              Últimos Movimientos
+            </a>
+            
+            <a class="btn btn-outline-info btn-block mt-2" id="bolsillosButton">
+              Mis Bolsillos
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Gráfico Interactivo -->
+    <div class="col-12 col-lg-7">
+      <div class="card wallet-card shadow-sm mx-auto h-100" style="padding: 20px;">
+        <div class="card-body p-0">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+            <h5 class="mb-2 mb-md-0" style="font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Balance Histórico</h5>
+            <div class="btn-group btn-group-sm" role="group" id="chartFilters">
+              <button type="button" class="btn btn-outline-light" onclick="updateChart('1D', this)">Hoy</button>
+              <button type="button" class="btn btn-outline-light" onclick="updateChart('1M', this)">1 Mes</button>
+              <button type="button" class="btn btn-outline-light" onclick="updateChart('1Y', this)">1 Año</button>
+              <button type="button" class="btn btn-outline-light active" onclick="updateChart('ALL', this)">Todo</button>
+            </div>
+          </div>
+          
+          <div style="position: relative; height: 350px; width: 100%;">
+            <canvas id="balanceChart"></canvas>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% if messages %}
+<script>
+  {% for message in messages %}
+  Swal.fire({
+      title: '¡Depósito realizado!',
+      text: '{{ message }}',
+      icon: 'success',
+      background: 'linear-gradient(135deg, #3c096c, #7b2cbf)',
+      color: '#ffffff',
+      iconColor: '#ffffff',
+      confirmButtonColor: '#ffffff',
+      confirmButtonText: '<span style="color: #582551; font-weight: bold;">Ver balance</span>',
+      showClass: { popup: 'animate__animated animate__fadeInUp animate__faster' },
+      hideClass: { popup: 'animate__animated animate__fadeOut animate__faster' }
+  });
+  {% endfor %}
+</script>
+{% endif %}
+{% endblock %}
+
+{% block extrascripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const HISTORY_DATA = {{ history_json|safe }};
+  const CURRENT_BALANCE = parseFloat("{{ saldo|stringformat:'.2f' }}");
+</script>
+<script src="{% static 'alkewallet/js/menu.js' %}?v=5.0"></script>
+{% endblock %}
