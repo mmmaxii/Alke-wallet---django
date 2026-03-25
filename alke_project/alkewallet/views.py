@@ -9,6 +9,7 @@ from decimal import Decimal
 from django.db.models import Q
 from django.db import transaction
 
+# Autenticación
 def login_view(request):
     if request.method == 'POST':
         u = request.POST.get('username')
@@ -21,32 +22,39 @@ def login_view(request):
             messages.error(request, 'Usuario o contraseña incorrectos.')
     return render(request, 'alkewallet/index.html')
 
+# Logica de registro de usuarios
 def registro(request):
     if request.method == 'POST':
         nombre = request.POST.get('first_name')
         email = request.POST.get('username')
         password = request.POST.get('password')
         
+        # Verifico si el correo ya está registrado en la base de datos
         if User.objects.filter(username=email).exists():
             messages.error(request, 'El correo ya está registrado.')
         else:
+            # Creo el usuario
             user = User.objects.create_user(username=email, email=email, password=password, first_name=nombre)
+            # Creo la cuenta asociada al usuario
             Cuenta.objects.create(usuario=user, saldo=0.00)
             login(request, user)
             return redirect('menu')
             
     return render(request, 'alkewallet/register.html')
 
+# Logica de cierre de sesión
 def logout_view(request):
     logout(request)
     return redirect('login')
 
+# Logica de depósito
 @login_required(login_url='login')
 def deposit(request):
     if request.method == 'POST':
         # Obtengo el monto enviado por el formulario HTML de depósito
         monto_str = request.POST.get('monto')
         if monto_str:
+            # Ocupamos Decimal para evitar problemas de precisión.
             monto_decimal = Decimal(monto_str)
             
             # Consulto la cuenta de mi usuario actualmente conectado
@@ -70,6 +78,7 @@ def deposit(request):
             
     return render(request, 'alkewallet/deposit.html')
 
+# Logica del menú principal
 @login_required(login_url='login')
 def menu(request):
     # Busco la cuenta específica de este usuario

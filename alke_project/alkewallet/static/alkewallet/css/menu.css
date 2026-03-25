@@ -72,9 +72,7 @@ body {
 
 
 
-/* =========================================
-   FILTROS DEL GRÁFICO (CHART.JS)
-   ========================================= */
+/* FILTROS DEL GRÁFICO (CHART.JS) */
 #chartFilters .btn-outline-light {
     color: rgba(255, 255, 255, 0.8);
     border-color: rgba(255, 255, 255, 0.3);
@@ -96,9 +94,7 @@ body {
 
 
 
-/* =========================================
-   RESPONSIVE (VISTA MÓVIL)
-   ========================================= */
+/* RESPONSIVE (VISTA MÓVIL) */
 
 @media (max-width: 768px) {
 
@@ -124,7 +120,7 @@ body {
         padding: 1.5rem;
     }
 
-    /* 3. Ajustar tamaño de letras para que no se rompa */
+    /* Ajustar tamaño de letras para que no se rompa */
     .balance {
         font-size: 2.5rem;
         /* Un poco más chico que en escritorio (era 3rem) */
@@ -134,7 +130,7 @@ body {
         font-size: 1.3rem;
     }
 
-    /* 4. Asegurar que el body no tenga scroll horizontal */
+    /* Asegurar que el body no tenga scroll horizontal */
     body {
         overflow-x: hidden;
     }

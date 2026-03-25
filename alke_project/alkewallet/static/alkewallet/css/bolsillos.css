@@ -1,3 +1,80 @@
+/* ── Layout principal ── */
+.bolsillos-row {
+    min-height: calc(100vh - 80px);
+}
+
+/* ── Tarjeta principal ── */
+.bolsillos-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: white;
+}
+
+/* ── Texto saldo disponible ── */
+.bolsillos-saldo-texto {
+    color: #e0e0e0;
+    font-size: 1.1em;
+}
+
+/* ── Botón de ayuda desplegable ── */
+.btn-ayuda-bolsillos {
+    border-radius: 12px;
+    border-color: rgba(0, 210, 255, 0.5);
+    color: #00d2ff;
+}
+
+/* ── Tarjeta de ayuda (collapse) ── */
+.bolsillos-info-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    border-left: 3px solid #00d2ff;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Lista dentro de la tarjeta de ayuda ── */
+.bolsillos-info-card ul {
+    line-height: 1.6;
+}
+
+/* ── Botón "Crear Nueva Meta" ── */
+.btn-crear-bolsillo {
+    border-radius: 12px;
+    font-weight: bold;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Título "Tus Bolsillos Activos" ── */
+.bolsillos-seccion-titulo {
+    letter-spacing: 1px;
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Separador ── */
+.bolsillos-hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ── Botones de acción (Aportar / Retirar / Eliminar) ── */
+.btn-accion-bolsillo {
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* ── Botón Volver ── */
+.btn-volver-bolsillos {
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+}
+
+/* ── Item de bolsillo ── */
 .bolsillo-item {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -12,7 +89,8 @@
     border-color: #ffffff;
     box-shadow: 0 0 15px rgba(255,255,255,0.2);
 }
-/* Estilos para la barra de progreso personalizados */
+
+/* ── Barra de progreso ── */
 .progress {
     height: 12px;
     background-color: rgba(255,255,255,0.2);
@@ -22,3 +100,4 @@
 .progress-bar {
     background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
 }
+

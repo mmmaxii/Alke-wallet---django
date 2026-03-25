@@ -2,7 +2,7 @@
 
 Alke-Wallet es una plataforma de billetera digital desarrollada desde cero con Python y Django. 
 
-El proyecto combina un backend seguro para el manejo de transacciones con un frontend moderno, destacando el uso de integraciones asíncronas con JavaScript (Fetch API, SweetAlert2, Chart.js) y una estética "Glassmorphism" (cristal esmerilado) en modo oscuro para brindar una experiencia de usuario fluida, limpia e institucional.
+El proyecto combina un backend seguro para el manejo de transacciones con un frontend moderno, destacando el uso de integraciones asíncronas con JavaScript (Fetch API, SweetAlert2, Chart.js) y una estética "Glassmorphism" (cristal esmerilado) en modo oscuro para brindar una experiencia de usuario fluida y limpia.
 
 ## Características Principales
 
