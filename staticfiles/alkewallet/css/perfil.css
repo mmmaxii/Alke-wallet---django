@@ -1,0 +1,41 @@
+.profile-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    color: white;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+.avatar-circle {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #b884c7 0%, #7b2cbf 100%);
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border: 4px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.info-field {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border-left: 4px solid #00d2ff;
+}
+.info-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+}
+.info-value {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
