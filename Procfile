@@ -1,1 +1,1 @@
-web: gunicorn alke_wallet.wsgi
+web: gunicorn alke_project.wsgi
