@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ws_-(n%jebb80td$4!*e$$nv1+n38rq2i3rdpi#2n_!-4ow-l7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*.railway.internal", "alkewallet.railway.app", "*.railway.app"]
+ALLOWED_HOSTS = ["alke-wallet-django-production.up.railway.app"]
 
 
 # Application definition
